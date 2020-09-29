@@ -1,0 +1,47 @@
+version: "3"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app:/var/www/aeroclub
+    links:
+      - php
+      - db
+      - maildev
+
+  php:
+    build: php
+    restart: always
+    volumes:
+      - ./app:/var/www/aeroclub
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - db
+      - maildev
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=aeroclub
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - ${PWD}/postgres:/var/lib/postgres
+
+  adminer:
+    image: dockette/adminer:pgsql
+    depends_on:
+    - db
+    ports:
+    - 9000:9000
+
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - "1080:80"
+      - "1025:25"
+
