@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Membres
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="membres", indexes={@ORM\Index(name="i_fk_membres_qualif", columns={"num_qualif"}), @ORM\Index(name="i_fk_membres_civilite", columns={"num_civilite"})})
  * @ORM\Entity
  */
-class Membres
+class Membres implements UserInterface
 {
     /**
      * @var int
@@ -237,6 +238,11 @@ class Membres
      * })
      */
     private $numCivilite;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
 
     public function getNumMembre(): ?string
     {
@@ -603,5 +609,35 @@ class Membres
         return $this;
     }
 
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
 
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+
+    public function getRoles()
+    {
+        return ['USER_ADMIN'];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getUsername()
+    {
+        return $this->getEmail();
+    }
+
+    public function eraseCredentials()
+    {
+    }
 }

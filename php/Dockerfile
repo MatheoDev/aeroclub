@@ -31,9 +31,10 @@ RUN apt-get update && apt-get install -y \
         libonig-dev \
         openssl \
         zip \
-        unzip
+        unzip \
+        postgresql-client
 
-RUN docker-php-ext-install iconv json mbstring opcache intl bz2 mysqli pdo_mysql pdo_sqlite phar curl ftp session simplexml tokenizer xml xmlrpc zip
+RUN docker-php-ext-install iconv json mbstring opcache intl bz2 mysqli pdo_mysql pdo_sqlite pdo_pgsql phar curl ftp session simplexml tokenizer xml xmlrpc zip
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
