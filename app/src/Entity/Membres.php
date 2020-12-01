@@ -244,6 +244,11 @@ class Membres implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $role = [];
+
     public function getNumMembre(): ?string
     {
         return $this->numMembre;
@@ -624,7 +629,7 @@ class Membres implements UserInterface
 
     public function getRoles()
     {
-        return ['USER_ADMIN'];
+        return $this->role;
     }
 
     public function getSalt()
@@ -639,5 +644,17 @@ class Membres implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function getRole(): ?array
+    {
+        return $this->role;
+    }
+
+    public function setRole(array $role): self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
