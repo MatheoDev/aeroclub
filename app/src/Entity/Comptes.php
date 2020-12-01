@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Comptes
  *
  * @ORM\Table(name="comptes", indexes={@ORM\Index(name="i_fk_comptes_membres", columns={"num_membre"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ComptesRepository")
  */
 class Comptes
 {

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SeqVol
  *
  * @ORM\Table(name="seq_vol", indexes={@ORM\Index(name="i_fk_seq_vol_instructeurs", columns={"num_instructeur"}), @ORM\Index(name="i_fk_seq_vol_membres", columns={"num_membre"}), @ORM\Index(name="i_fk_seq_vol_avions", columns={"num_avion"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\SeqVolRepository")
  */
 class SeqVol
 {

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Qualif
  *
  * @ORM\Table(name="qualif")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\QualifRepository")
  */
 class Qualif
 {
