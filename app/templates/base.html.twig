@@ -6,12 +6,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/yeti/bootstrap.min.css" integrity="sha384-mLBxp+1RMvmQmXOjBzRjqqr0dP9VHU2tb3FK6VB0fJN/AOu7/y+CAeYeWJZ4b3ii" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/06a0ccab7e.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('home') }}">AeroClub</a>
+                <a class="navbar-brand" href="{{ url('home') }}" style="font-family: 'Satisfy', cursive;">AeroClub</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -37,17 +38,29 @@
                                 {{ app.user.username }}
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Mon compte</a>
+                                <a class="dropdown-item" href="{{ path('profil') }}">Mon compte</a>
                                 <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-toggle-off text-danger"></i> Déconnexion</a>
                             </div>
                         </div>
                     {% else %}
-                        <a class="btn btn-success btn-sm" href="{{ url('app_login') }}">Se connecter</a>
+                        <a class="btn btn-warning btn-sm" href="{{ url('app_login') }}">Se connecter</a>
                     {% endif %}
                 </div>
             </div>
         </nav>
         {% block body %}{% endblock %}
+
+        <!-- Footer -->
+        <footer class="page-footer text-white font-small bg-dark mt-4 p-3">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright :
+                <a href="" class="text-white"> MatheoDev</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

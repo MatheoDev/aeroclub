@@ -3,4 +3,14 @@
 }
 .imgHome {
     width: 100%;
+    opacity: 0.8;
+}
+.homepage {
+    background-image: url("background.jpg") !important;
+    background-size: cover;
+    background-position: center;
+}
+.children-homepage {
+    background-color: rgba(255,255,255,0.2);
+    padding: 18.9%;
 }
