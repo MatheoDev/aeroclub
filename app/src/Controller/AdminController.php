@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comptes;
 use App\Entity\Membres;
+use App\Repository\ComptesRepository;
 use App\Repository\MembresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,9 +41,14 @@ class AdminController extends AbstractController
     public function show($id): Response
     {
         $repo = $this->getDoctrine()->getRepository(Membres::class);
+        $repoC = $this->getDoctrine()->getRepository(Comptes::class);
         $membre = $repo->find($id);
+        $compte = $repoC->findBY(array(
+            'numMembre' => $id
+        ));
         return $this->render('admin/profilshow.html.twig', [
-            'user' => $membre
+            'user' => $membre,
+            'compte' => $compte
         ]);
     }
 }
